@@ -1,0 +1,23 @@
+<style>
+  .flex-outer li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .flex-outer > li > label, .flex-outer li p {
+    flex: 1 0 120px;
+    max-width: 220px;
+  }
+
+</style>
+<div>
+	<h1> Tous les utilisateurs</h1>
+	<h3><a href="/users/new">Créer un utilisateur</a></h3>
+	<div>
+		<ul class=".flex-outer">
+			<% @users.each do |user| %>
+				<li> <%= user.username %> </li>
+			<% end %>
+		</ul>
+	</div>
+</div>
