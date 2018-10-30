@@ -1,0 +1,12 @@
+
+<h1> Découvrez tous les gossips ! </h1>
+
+<% @gossips.each do |gossip| %>
+	<div class="gossip">
+			<span class="username">
+				<%= gossip.author %>
+			</span>
+			a dit : <span class="content"> <%= gossip.content %> </span>
+			<%= link_to "Voir", gossip_s_path(gossip.id) %>
+	</div>
+<% end %>
