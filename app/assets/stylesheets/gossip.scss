@@ -1,3 +1,15 @@
 // Place all the styles related to the gossip controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.gossips {
+	flex-direction:column;
+	justify-content:center;
+	padding:10px;
+}
+
+.gossips .gossip {
+	padding-top:15px;
+	justify-content:center;
+}

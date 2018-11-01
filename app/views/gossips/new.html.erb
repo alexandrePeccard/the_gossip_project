@@ -1,0 +1,52 @@
+<style>
+  .flex-outer li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .flex-outer > li > label, .flex-outer li p {
+    flex: 1 0 120px;
+    max-width: 220px;
+    }
+
+  .flex-outer > li > label + * {
+    flex: 1 0 220px;
+  }
+
+  .flex-outer li button {
+    margin-left: auto;
+    padding: 8px 16px;
+    border: none;
+    background: #333;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 2px;
+  }
+</style>
+
+<div >
+  <h1>Créer un gossip</h1>
+
+  <%= form_for @gossip, :url => gossips_path do |f| %>
+    <% if @user %>
+      <%= hidden_field_tag :user_id, @user.id %>
+    <% else %>
+      <div class="field">
+        <%= f.label :anonymous_gossiper %><br>
+        <%= f.text_field :anonymous_gossiper %>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :content %><br>
+      <%= f.text_area :content %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+
+</div>

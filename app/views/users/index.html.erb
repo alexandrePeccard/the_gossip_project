@@ -17,6 +17,7 @@
 		<ul class=".flex-outer">
 			<% @users.each do |user| %>
 				<li> <%= user.username %> </li>
+				<li> <%= link_to "Delete", user_path(user), method: :delete %> </li>
 			<% end %>
 		</ul>
 	</div>

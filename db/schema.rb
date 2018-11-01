@@ -10,16 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_143241) do
+ActiveRecord::Schema.define(version: 2018_11_01_160241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "gossips", force: :cascade do |t|
-    t.string "author"
+    t.string "anonymous_gossiper"
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_gossips_on_user_id"
+  end
+
+  create_table "gossips_tags", id: false, force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "gossip_id", null: false
+    t.index ["tag_id", "gossip_id"], name: "index_gossips_tags_on_tag_id_and_gossip_id"
+  end
+
+  create_table "likes_tables", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "gossip_id"
+    t.index ["gossip_id"], name: "index_likes_tables_on_gossip_id"
+    t.index ["user_id"], name: "index_likes_tables_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -28,6 +47,8 @@ ActiveRecord::Schema.define(version: 2018_10_30_143241) do
     t.string "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password"
   end
 
+  add_foreign_key "gossips", "users"
 end

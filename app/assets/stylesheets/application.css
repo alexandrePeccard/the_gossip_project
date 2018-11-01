@@ -7,15 +7,13 @@ body {
 h1 {
 	text-align: center;
 }
+#content {
+	display:flex;
+	justify-content:center;
+}
 #content ul li {
 	list-style:none;
 	text-decoration: none;
-}
-
-#content .gossip {
-	display:flex;
-	align-items: center;
-  justify-content: center;
 }
 #content .team {
 	display:flex;
@@ -27,8 +25,4 @@ h1 {
 	display:flex;
 	align-items: center;
   justify-content: center;	
-}
-
-#content .gossip .username {
-	font-weight: bold;
 }

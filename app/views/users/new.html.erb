@@ -24,9 +24,10 @@
     border-radius: 2px;
   }
 </style>
+
 <div >
-  <h1>Créer un utilisateur</h1>
-  <form action="/users/create" method="post">
+  <h1>Sign up </h1>
+  <form action="/users" method="post">
     <ul class="flex-outer">
       <li>
         <label for="username">Username</label>
@@ -36,6 +37,12 @@
         <label for="email">Email</label>
         <input type="email" name="email" placeholder="Enter your email here" />
       </li>
+
+      <li>
+        <label for="email">Password</label>
+        <input type="password" name="password" placeholder="Enter your password here" />
+      </li>
+
       <li>
         <label for="bio">Bio</label>
         <input type="text" name="bio" placeholder="Enter your bio here"/>

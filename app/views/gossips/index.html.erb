@@ -1,0 +1,26 @@
+<%= stylesheet_link_tag 'gossip', media: 'all' %>
+<div class="gossips">
+	<h1> Découvrez tous les gossips ! </h1>
+<br>
+	<% @gossips.each do |gossip| %>
+		<div class="gossip">
+				<div>
+					<% if gossip.user_id.nil? %>
+						Author : <%= gossip.anonymous_gossiper %>
+					<% else %>
+						Author : <%= User.find(gossip.user_id).username %>
+					<% end %>
+				</div>
+				<div>
+					Content : 
+					<%= gossip.content %>
+					<br>
+					<%= link_to "Le ragot en détail !", gossip_path(gossip) %>
+					<br>
+					<% if !@user.nil? && @user.id == gossip.user_id %>
+						<%= link_to "Supprimer mon ragot", gossip_path(gossip), method: :delete %>
+					<% end %>
+				</div>
+			</div>
+	<% end %>
+</div>
