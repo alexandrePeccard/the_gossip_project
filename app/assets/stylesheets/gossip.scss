@@ -3,13 +3,67 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.flex-outer li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.flex-outer > li > label, .flex-outer li p {
+  flex: 1 0 120px;
+  max-width: 220px;
+  }
+
+.flex-outer > li > label + * {
+  flex: 1 0 220px;
+}
+
+.flex-outer li button {
+  margin-left: auto;
+  padding: 8px 16px;
+  border: none;
+  background: #333;
+  color: #f2f2f2;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  border-radius: 2px;
+}
+
 .gossips {
 	flex-direction:column;
 	justify-content:center;
+	align-items:center;
 	padding:10px;
+}
+.gossip p {
+	justify-content:flex-start;
+	align-items:center;
 }
 
 .gossips .gossip {
 	padding-top:15px;
+}
+.buttons {
+	display:flex;
+	align-items:center;
 	justify-content:center;
+}
+.buttons li {
+	flex-direction:row;
+	align-items:center;
+	justify-content:center;
+	padding:5px;
+}
+
+#gossip, #gossip-show, #form {
+  flex-direction:row;
+}
+
+#gossip {
+  float:left;
+  padding-right: 5em;
+}
+
+#comment {
+  float:right;
+  padding-left: 5em;
 }

@@ -3,6 +3,7 @@ class AddTables < ActiveRecord::Migration[5.2]
   	create_table :gossips do |t|
   		t.string :anonymous_gossiper
   		t.string :content
+  		t.string :title
   		t.timestamps
   	end
   end

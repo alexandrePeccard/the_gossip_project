@@ -4,17 +4,32 @@ html, body {
 body {
 	margin:0;
 }
+ul li a {
+	text-decoration: none;
+	color:black;
+	padding:5px;
+}
 h1 {
 	text-align: center;
+}
+.user-infos {
+	position: fixed;
+	float:right;
+	right:2em;
+}
+.user-infos a {
+	padding-right:7em;
 }
 #content {
 	display:flex;
 	justify-content:center;
+	align-items: center;
 }
 #content ul li {
 	list-style:none;
 	text-decoration: none;
 }
+
 #content .team {
 	display:flex;
 	align-items: center;

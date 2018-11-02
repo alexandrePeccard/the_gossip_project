@@ -1,22 +1,68 @@
-<div class="gossip">
-		<div>
+<%= stylesheet_link_tag 'gossip', media: 'all' %>
+
+<div>
+	<div id="gossip">
+		<div class="actions">
 			<ul>
 				<li>
 					<% if !@user.nil? && @user.id == @gossip.user_id %>
-						<%= link_to "Supprimer mon ragot", gossip_path(@gossip), method: :delete %>
-						<%= link_to "Editer mon ragot", edit_gossip_path(@gossip), method: :get %>
+						<%= link_to "Supprimer mon ragot", gossip_path(@gossip), method: :delete, :class => "btn btn-primary" %>
+						<%= link_to "Editer mon ragot", edit_gossip_path(@gossip), method: :get, :class =>"btn btn-primary" %>
 					<% end %>
 				</li>
 			</ul>
-			<% if @gossip.user_id.nil? %>
-				Author : <%= gossip.anonymous_gossiper %>
-			<% else %>
-				Author : <%= User.find(@gossip.user_id).username %>
-			<% end %>
 		</div>
-		<div>
-			Content : 
-			<%= @gossip.content %>
-			<br>
-		</div>
+		<table class="table table-condensed">
+			<tr>
+				<th>Author</th>
+				<td>
+					<% if @gossip.user_id.nil? %>
+						<%= gossip.anonymous_gossiper %>
+					<% else %>
+						<%= User.find(@gossip.user_id).username %>
+					<% end %>
+				</td>
+			</tr>
+
+			<tr>
+				<th>Title</th>
+				<td>
+					<%= @gossip.title.capitalize %>
+				</td>
+			</tr>
+
+			<tr>
+				<th>Content</th>
+				<td>
+					<%= @gossip.content %>
+				</td>
+			</tr>
+		</table>
 	</div>
+
+	<div id="gossip-show" class="comments">
+			<table>
+					<% @comments.each do |comment| %>
+					<tr>
+						<th><%= User.find(comment.user_id).username %> a dit :</th>
+						<td><%= comment.content %></td>
+					</tr>
+					<% end %>
+		</table>
+	</div>
+<br><br>
+	<div id="show_form">
+		<%= form_for @comment, :url => comments_path do |f| %>
+	      <%= hidden_field_tag :gossip_id, @gossip.id %>
+	      <% if @user %>
+	    		<%= hidden_field_tag :user_id, @user.id %>
+	 			<% end %>
+	      <div class="field">
+	        <%= f.text_field :content %>
+	      </div>
+	    <div class="actions">
+	      <%= f.submit class: "btn btn-primary" %>
+	    </div>
+	  <% end %>
+	</div>
+</div>

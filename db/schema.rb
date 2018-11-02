@@ -15,9 +15,20 @@ ActiveRecord::Schema.define(version: 2018_11_01_160241) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "gossip_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gossip_id"], name: "index_comments_on_gossip_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "gossips", force: :cascade do |t|
     t.string "anonymous_gossiper"
     t.string "content"
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -30,11 +41,11 @@ ActiveRecord::Schema.define(version: 2018_11_01_160241) do
     t.index ["tag_id", "gossip_id"], name: "index_gossips_tags_on_tag_id_and_gossip_id"
   end
 
-  create_table "likes_tables", force: :cascade do |t|
+  create_table "likes", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "gossip_id"
-    t.index ["gossip_id"], name: "index_likes_tables_on_gossip_id"
-    t.index ["user_id"], name: "index_likes_tables_on_user_id"
+    t.index ["gossip_id"], name: "index_likes_on_gossip_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|

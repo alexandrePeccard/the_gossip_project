@@ -1,26 +1,46 @@
 <%= stylesheet_link_tag 'gossip', media: 'all' %>
+
 <div class="gossips">
 	<h1> Découvrez tous les gossips ! </h1>
 <br>
 	<% @gossips.each do |gossip| %>
 		<div class="gossip">
-				<div>
+				<p>
 					<% if gossip.user_id.nil? %>
-						Author : <%= gossip.anonymous_gossiper %>
+						Author : <%= gossip.anonymous_gossiper.capitalize %>
 					<% else %>
-						Author : <%= User.find(gossip.user_id).username %>
+						Author : <%= User.find(gossip.user_id).username.capitalize %>
 					<% end %>
-				</div>
-				<div>
-					Content : 
-					<%= gossip.content %>
+				</p>
+				<p>
+					Title : 
+					<%= gossip.title.capitalize %>
 					<br>
-					<%= link_to "Le ragot en détail !", gossip_path(gossip) %>
-					<br>
-					<% if !@user.nil? && @user.id == gossip.user_id %>
-						<%= link_to "Supprimer mon ragot", gossip_path(gossip), method: :delete %>
+					<ul class="buttons">
+						<li>
+							<%= link_to "Details", gossip_path(gossip), :class=>"btn btn-primary" %>
+						</li>
+						<% if !@user.nil? %>
+							<% if @user.id == gossip.user_id %>
+								<li>
+									<%= link_to "Delete", gossip_path(gossip), method: :delete, :class=>"btn btn-primary" %>
+								</li>
+							<% end %>
+
+						<li>
+						</li>
+						<li>
+							<% if !@user.has_liked_gossip(gossip.id) %>
+								<span>
+									<a href="/dislikes/gossip/<%= gossip.id %>" data-remote=true class="em em-heart"></a>
+								</span>
+							<% else %>
+								<a href="/likes/gossip/<%= gossip.id %>" data-remote=true class="btn btn-primary">Like !</a>
+							<% end %>
+						</li>
 					<% end %>
-				</div>
+					</ul>
+				</p>
 			</div>
 	<% end %>
 </div>

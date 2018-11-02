@@ -12,12 +12,14 @@ class GossipsController < ApplicationController
   end
 
   def show
-    render 'gossips/show'
+    @comment = Comment.new
+    @comments = Comment.where(gossip_id: @gossip.id)
   end
 
   def create
     @gossip = Gossip.new
     @gossip.content = params[:gossip][:content]
+    @gossip.title = params[:gossip][:title]
     if params['user_id']
       @gossip.user_id = params['user_id']
     else
