@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Gossip project allows you to upload some gossips and comment people gossips.
 
-Things you may want to cover:
-
-* Ruby version
+* Ruby version :
+2.5.1
 
 * System dependencies
 
-* Configuration
 
 * Database creation
+``` rails db:create ```
 
 * Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+``` rails db:migrate ```
